@@ -83,6 +83,13 @@ local packer_install_tbl = {
     ["folke/which-key.nvim"] = { -- keybinder
         event = {"BufRead", "BufNewFile"}
     },
+    ["preservim/tagbar"] = {},
+    ["voldikss/vim-floaterm"] = {
+        after = {"impatient.nvim"}
+    },
+    -- ["akinsho/toggleterm.nvim"] = {
+    --     tag = 'v1.*'
+    -- },
 
     ----------------------
     -- LSP 配置
@@ -159,6 +166,10 @@ local packer_install_tbl = {
     ----------------------
     -- 调试配置
     ----------------------
+    ["thinca/vim-quickrun"] = { -- quick run code
+        ptp = "viml",
+    },
+    -- ["arjunmahishi/run-code.nvim"] = {}, -- quick run code
     ["mfussenegger/nvim-dap"] = { -- provide code debugging
         module = "dap"
     },
@@ -181,6 +192,10 @@ local packer_install_tbl = {
         cmd = "DBUIToggle"
     },
 
+    ----------------------
+    -- 语言专属插件
+    ----------------------
+    ["fatih/vim-go"] = {}, -- golang enhance
 
     ----------------------
     -- 代码功能
@@ -260,6 +275,12 @@ local packer_install_tbl = {
     ["nvim-telescope/telescope-dap.nvim"] = { -- 调试断点搜索
         after = {"telescope.nvim"}
     },
+    ["dawsers/telescope-floaterm.nvim"] = {
+        after = {"telescope.nvim"},
+        config = function()
+            require('telescope').load_extension('floaterm')
+        end
+    },
     ["tami5/sqlite.lua"] = { -- persistent storage history yank records
         after = {"impatient.nvim"}
     },
@@ -320,9 +341,6 @@ local packer_install_tbl = {
     ["ethanholz/nvim-lastplace"] = {event = {"BufRead"}},
     ["dstein64/nvim-scrollview"] = { -- draggable scrollbar
         event = {"BufRead", "BufNewFile"}
-    },
-    ["akinsho/toggleterm.nvim"] = { -- Beautify neovim default terminal
-        tag = 'v1.*'
     },
     ["uga-rosa/translate.nvim"] = { -- an excellent translation plugin
         cmd = {"Translate"}

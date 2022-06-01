@@ -31,78 +31,223 @@ mapping.global = {
     -- 文件相关
     -------------------------
     {
-        mode = {"n"},
-        lhs = "<leader><w>",
+        mode = {"n", "v"},
+        lhs = "<leader>w",
         rhs = ":w<cr>",
-
-        description = "Save file"
+        description = "Save file",
     }, {
         mode = {"n", "v"},
-        lhs = "<space><w>",
-        rhs = ":w<cr>",
-
+        lhs = "<space>w",
+        rhs = ":wa<cr>",
         description = "Safe all file"
-    }, {
-        mode = {"n", "v"},
-        lhs = "<leader><w>",
-        rhs = ":w<cr>",
-
-        description = "Safe File"
-    }, {
-        mode = {"n", "v"},
-        lhs = "<space><esc>",
-        rhs = ":qa!<cr>",
-
-        description = "Quit"
     }, {
         mode = {"n", "v"},
         lhs = "<leader>q",
         rhs = ":q<cr>",
-
         description = "Close file"
     }, {
         mode = {"n", "v"},
         lhs = "<leader>Q",
         rhs = ":q!<cr>",
-
         description = "Close file nosave"
-    }, 
-    
+    }, {
+        mode = {"n", "v"},
+        lhs = "<space><esc>",
+        rhs = ":qa!<cr>",
+        description = "Quit"
+    }, --
     -------------------------
-    -- 窗口管理 
+    -- 标签管理 
+    -------------------------
+    {
+        mode = {"n"},
+        lhs = {"<M-h>", "<C-S-h>"},
+        rhs = "<cmd>BufferLineCyclePrev<cr>",
+        description = "Go to left buffer"
+    }, {
+        mode = {"n"},
+        lhs = {"<M-l>", "<C-S-l>", "<C-tab>"},
+        rhs = "<cmd>BufferLineCycleNext<cr>",
+        description = "Go to right buffer"
+    }, {
+        mode = {"n"},
+        lhs = "<M-e>",
+        rhs = "<cmd>BufferLineMovePrev<cr>",
+        description = "Move current buffer to left"
+    }, {
+        mode = {"n"},
+        lhs = "<c-y>",
+        rhs = "<cmd>BufferLineMoveNext<cr>",
+        description = "Move current buffer to right"
+    }, {
+        mode = {"n"},
+        lhs = {"<space>bn", "<C-n>"},
+        rhs = "<cmd>enew<cr>",
+        description = "Create new buffer"
+    }, {
+        mode = {"n"},
+        lhs = {"<M-q>", "<space>bc", "<space>bx"},
+        rhs = "<cmd>BufferDelete<cr>",
+        description = "Close current buffer"
+    }, {
+        mode = {"n"},
+        lhs = "<space>bl",
+        rhs = "<cmd>BufferLineCloseLeft<cr>",
+        description = "Close all left buffers"
+    }, {
+        mode = {"n"},
+        lhs = "<space>br",
+        rhs = "<cmd>BufferLineCloseRight<cr>",
+        description = "Close all right buffers"
+    }, {
+        mode = {"n"},
+        lhs = {"<space>bo", "<space>bX", "<M-Q>"},
+        rhs = function()
+            vim.cmd("BufferLineCloseLeft")
+            vim.cmd("BufferLineCloseRight")
+        end,
+        description = "Close all other buffers"
+    }, {
+        mode = {"n"},
+        lhs = "<space>ba",
+        rhs = function()
+            vim.cmd("BufferLineCloseLeft")
+            vim.cmd("BufferLineCloseRight")
+            vim.cmd("BufferDelete")
+        end,
+        description = "Close all buffers"
+    }, {
+        mode = {"n"},
+        lhs = "<space>bs",
+        rhs = "<cmd>BufferLineSortByExtension<cr>",
+        description = "Buffers sort (by extension)"
+    }, {
+        mode = {"n"},
+        lhs = "<space>b1",
+        rhs = "<cmd>BufferLineGoToBuffer 1<cr>",
+        description = "Go to buffer 1"
+    }, {
+        mode = {"n"},
+        lhs = "<space>b2",
+        rhs = "<cmd>BufferLineGoToBuffer 2<cr>",
+        description = "Go to buffer 2"
+    }, {
+        mode = {"n"},
+        lhs = "<space>b3",
+        rhs = "<cmd>BufferLineGoToBuffer 3<cr>",
+        description = "Go to buffer 3"
+    }, {
+        mode = {"n"},
+        lhs = "<space>b4",
+        rhs = "<cmd>BufferLineGoToBuffer 4<cr>",
+        description = "Go to buffer 4"
+    }, {
+        mode = {"n"},
+        lhs = "<space>b5",
+        rhs = "<cmd>BufferLineGoToBuffer 5<cr>",
+        description = "Go to buffer 5"
+    }, {
+        mode = {"n"},
+        lhs = "<space>b6",
+        rhs = "<cmd>BufferLineGoToBuffer 6<cr>",
+        description = "Go to buffer 6"
+    }, {
+        mode = {"n"},
+        lhs = "<space>b7",
+        rhs = "<cmd>BufferLineGoToBuffer 7<cr>",
+        description = "Go to buffer 7"
+    }, {
+        mode = {"n"},
+        lhs = "<space>b8",
+        rhs = "<cmd>BufferLineGoToBuffer 8<cr>",
+        description = "Go to buffer 8"
+    }, {
+        mode = {"n"},
+        lhs = "<space>b9",
+        rhs = "<cmd>BufferLineGoToBuffer 9<cr>",
+        description = "Go to buffer 9"
+    }, --
+    -------------------------
+    -- 分屏管理 
     -------------------------
     {
         mode = {"n", "v"},
         lhs = "<space>pv",
         rhs = ":vsplit<cr>",
-
         description = "Panel Split Vertial"
     }, {
         mode = {"n", "v"},
         lhs = "<space>ph",
         rhs = ":split<cr>",
-
         description = "Panel Split Horizontol"
     }, {
         mode = {"n", "v"},
-        lhs = "<space>px",
+        lhs = {"<space>px", "<C-q>"},
         rhs = "<C-w>c",
-
         description = "Close current panel"
     }, {
         mode = {"n", "v"},
-        lhs = "<space>p=",
+        lhs = {"<space>po", "<space>pX"},
         rhs = "<C-w>o",
-
         description = "Close other panel"
     }, {
         mode = {"n", "v"},
         lhs = "<space>p=",
         rhs = "<C-w>p=",
-
         description = "Panel Resize default"
-    }, 
-    
+    }, {
+        mode = {"n", "v"},
+        lhs = "<space>pf",
+        rhs = "<C-w>T",
+        description = "Panel Fullscreen"
+    }, --
+    -------------------------
+    -- 视图管理
+    -------------------------
+    {
+        -- 目录视图
+        mode = {"n", "v"},
+        lhs = {"<space>e", "<M-b>"},
+        rhs = function()
+            aux.toggle_sidebar("NvimTree")
+            vim.cmd("NvimTreeToggle")
+        end,
+        description = "Open File Explorer"
+    }, {
+        -- 大纲视图
+        mode = {"n", "v"},
+        lhs = {"<space>2", "<leader>o", "<space>o"},
+        rhs = "<cmd>AerialToggle! right<cr>",
+        description = "Open Outilne Explorer"
+    }, {
+        -- 版本视图
+        mode = {"n"},
+        lhs = {"<space>3", "<C-y>"},
+        -- rhs = ":UndotreeToggle<cr>",
+        rhs = function()
+            aux.toggle_sidebar("undotree")
+            vim.cmd("UndotreeToggle")
+        end,
+        options = {silent = true},
+        description = "Open Undo Explorer"
+    }, {
+        -- ctags视图
+        mode = {"n"},
+        lhs = "<space>4",
+        rhs = ":TagbarToggle<cr>",
+        description = "Open Tagbar"
+    }, {
+        -- 数据库视图
+        mode = {"n"},
+        lhs = "<space>5",
+        -- rhs = ":NvDBUIToggle<cr>",
+        rhs = function()
+            aux.toggle_sidebar("dbui")
+            vim.cmd("DBUIToggle")
+        end,
+        options = {silent = true},
+        description = "Open Database Explorer"
+    }, --
     -------------------------
     -- 编辑功能
     -------------------------
@@ -111,12 +256,456 @@ mapping.global = {
         lhs = "<leader>;",
         rhs = '$a;<esc>',
         description = "Line append ;"
+    }, {
+        mode = {"n"},
+        lhs = {"<leader>rf", "<C-r>"},
+        rhs = function()
+            aux.toggle_sidebar("spectre_panel")
+            require("spectre").open_file_search({select_word = true})
+        end,
+        description = "Replace in current file"
+    }, {
+        mode = {"n"},
+        lhs = {"<leader>rp", "<M-r>"},
+        rhs = function()
+            aux.toggle_sidebar("spectre_panel")
+            require("spectre").open({select_word = true})
+        end,
+        description = "Replace in workspace"
+    }, -- {
+    --     mode = {"n"},
+    --     lhs = {"<leader>rk"},
+    --     rhs = "viw:lua require('spectre').open_file_search({select_word=true})<cr>",
+    --     description = "Search in current file"
+    -- }, {
+    --     mode = {"n"},
+    --     lhs = {"<leader>rw"},
+    --     rhs = "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
+    --     description = "Search current word in current file"
+    -- }, {
+    --     mode = {"n"},
+    --     lhs = "<space>rq",
+    --     rhs = function()
+    --         aux.toggle_sidebar("spectre_panel")
+    --         require("spectre").open_visual({select_word = true})
+    --     end,
+    --     description = "Replace current word in workspace"
+    -- },
+    -------------------------
+    -- Code 功能
+    -------------------------
+    {
+        mode = {"n", "v"},
+        lhs = {"<leader>cpd"},
+        rhs = "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>",
+        description = "Toggle comment"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<leader>f"},
+        rhs = ":w",
+        description = "Formt buffer"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<leader>cpd"},
+        rhs = "<cmd>lua require('lvim.lsp.peek').Peek('definition')<cr>",
+        description = "Peek definition"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<leader>cpi"},
+        rhs = "<cmd>lua require('lvim.lsp.peek').Peek('implementation')<cr>",
+        description = "Peek implementation"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<leader>ca"},
+        rhs = "Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
+        description = "Code action"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<leader>ca"},
+        rhs = "<cmd>Telescope quickfix<cr>",
+        description = "Quick fix"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<leader>cd"},
+        rhs = "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
+        description = "Buffer diagnostics"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<leader>ck"},
+        rhs = "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
+        description = "Previous diagnostics"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<leader>cj"},
+        rhs = "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
+        description = "Next diagnostics"
+    }, --
+    -----------------------
+    -- 查找 功能
+    -------------------------
+    { -- 项目导航
+        mode = {"n"},
+        lhs = {"<space>fp"},
+        rhs = ":Telescope projects<cr>",
+        description = "Navigate projects"
+    }, { -- 文件导航
+        mode = {"n"},
+        lhs = {"<space>ff", "<M-p>", "<C-p>"},
+        rhs = ":Telescope find_files<cr>",
+        description = "Navigate files in workspace"
+    }, {
+        mode = {"n"},
+        lhs = "<space>fh",
+        rhs = ":Telescope oldfiles<cr>",
+        description = "Navigate file in history"
+    }, {
+        mode = {"n"},
+        lhs = {"<space>fb", "<C-t>"},
+        rhs = ":Telescope buffers<cr>",
+        description = "Navigate file in buffers"
+    }, {
+        -- 内容查找 (项目范围)
+        mode = {"n"},
+        lhs = {"<space>fg", "<M-f>"},
+        rhs = ":Telescope live_grep<cr>",
+        description = "Find string in workspace",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 内容查找
+        mode = {"n"},
+        lhs = {"<leader>fg", "<C-f>"},
+        rhs = ":Telescope current_buffer_fuzzy_find<cr>",
+        description = "Find string in buffer",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 查找标记
+        mode = {"n"},
+        lhs = "<space>fm",
+        rhs = ":Telescope marks<cr>",
+        description = "Find marks in workspace",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 查找诊断
+        mode = {"n"},
+        lhs = {"<space>fd", "<leader>fd"},
+        rhs = ":Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
+        description = "Find diagnostics in buffer",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 历史搜索记录
+        mode = {"n"},
+        lhs = "<space>f/",
+        rhs = ":Telescope search_history<cr>",
+        description = "Find search history",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 历史命令记录
+        mode = {"n"},
+        lhs = "<space>f:",
+        rhs = ":Telescope command_history<cr>",
+        description = "Find command history",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 历史消息记录
+        mode = {"n"},
+        lhs = "<space>fn",
+        -- <CMD>lua require('telescope').extensions.notify.notify()<CR>", "Notifications"
+        rhs = function() require("telescope").extensions.notify.notify() end,
+        description = "Find notices history",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 查找寄存器
+        mode = {"n"},
+        lhs = "<leader>fr",
+        rhs = ":Telescope registers<cr>",
+        description = "Find register",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 查找符号
+        mode = {"n"},
+        lhs = "<leader>fs",
+        rhs = ":Telescope lsp_document_symbols<cr>",
+        description = "Find document symbols",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        mode = {"n"},
+        lhs = {"<space>fk", "<leader>fS"},
+        rhs = ":Telescope lsp_workspace_symbols<cr>",
+        description = "Find workspace symbols",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 查找快捷键
+        mode = {"n"},
+        lhs = "<space>f?",
+        rhs = ":Telescope keymaps<cr>",
+        description = "Find Keymaps",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 查找帮助文档
+        mode = {"n"},
+        lhs = "<space>fh",
+        rhs = ":Telescope help_tags<cr>",
+        description = "Find help",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, {
+        -- 查找并预览主题
+        mode = {"n"},
+        lhs = "<space>fc",
+        rhs = ":lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<CR>",
+        description = "Preview Colorscheme",
+        requires = {"nvim-telescope/telescope.nvim"}
+    }, 
+    {
+        -- 查找历史剪切板
+        mode = {"n"},
+        lhs = "<space>fy",
+        rhs = function()
+            require("telescope").extensions.neoclip.default()
+        end,
+        description = "Find Clipboard History",
+        requires = {"nvim-telescope/telescope.nvim", "AckslD/nvim-neoclip.lua"}
     },
-
+    --
     -------------------------
-    -- 配置功能
+    -- Git 功能
     -------------------------
-
+    {
+        mode = {"n", "v"},
+        lhs = {"<leader>go", "<leader>fm"},
+        rhs = "<cmd>Telescope git_status<cr>",
+        description = "Open Changed file"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gR",
+        rhs = "lua require 'gitsigns'.reset_buffer()<cr>",
+        description = "Reset buffer"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gd",
+        rhs = "<cmd>Gitsigns diffthis HEAD<cr>",
+        description = "Diff current file"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gc",
+        rhs = ":Telescope git_bcommits<cr>",
+        description = "Checkout commit for current file"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<space>gc", "<leader>gC"},
+        rhs = ":Telescope git_commits<cr>",
+        description = "Checkout commit"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gb",
+        rhs = ":Telescope git_branches<cr>",
+        description = "Checkout branch"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gl",
+        rhs = "<cmd>lua require 'gitsigns'.blame_line()<cr>",
+        description = "Blame line"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gj",
+        rhs = "<cmd>lua require 'gitsigns'.next_hunk()<cr>",
+        description = "Next hunk"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>g",
+        rhs = "<cmd>lua require 'gitsigns'.prev_hunk()<cr>",
+        description = "Previous hunk"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gp",
+        rhs = "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
+        description = "Preview hunk"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gr",
+        rhs = "<cmd>lua require 'gitsigns'.reset_hunk()<cr>",
+        description = "Reset hunk"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gs",
+        rhs = "<cmd>lua require 'gitsigns'.stage_hunk()<cr>",
+        description = "Stage hunk"
+    }, {
+        mode = {"n", "v"},
+        lhs = "<leader>gu",
+        rhs = "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+        description = "Undo Stage hunk"
+    }, -- 
+    -------------------------
+    -- 调试功能
+    -------------------------
+    {
+        mode = {"n"},
+        lhs = "<leader>db",
+        rhs = function() require("dap").toggle_breakpoint() end,
+        options = {silent = true},
+        description = "Mark or delete breakpoints"
+    }, {
+        mode = {"n"},
+        lhs = "<leader>dc",
+        rhs = function() require("dap").clear_breakpoints() end,
+        options = {silent = true},
+        description = "Clear breakpoints in the current buffer"
+    }, {
+        mode = {"n"},
+        lhs = "<F5>",
+        rhs = function() require("dap").continue() end,
+        options = {silent = true},
+        description = "Enable debugging or jump to the next breakpoint"
+    }, {
+        mode = {"n"},
+        lhs = "<F6>",
+        rhs = function() require("dap").step_into() end,
+        options = {silent = true},
+        description = "Step into"
+    }, {
+        mode = {"n"},
+        lhs = "<F7>",
+        rhs = function()
+            ---@diagnostic disable-next-line: missing-parameter
+            require("dap").step_over()
+        end,
+        options = {silent = true},
+        description = "Step over"
+    }, {
+        mode = {"n"},
+        lhs = "<F8>",
+        rhs = function() require("dap").step_out() end,
+        options = {silent = true},
+        description = "Step out"
+    }, {
+        mode = {"n"},
+        lhs = "<F9>",
+        rhs = function() require("dap").run_last() end,
+        options = {silent = true},
+        description = "Rerun debug"
+    }, {
+        mode = {"n"},
+        lhs = "<F10>",
+        rhs = function() require("dap").terminate() end,
+        options = {silent = true},
+        description = "Close debug"
+    }, {
+        mode = {"n"},
+        lhs = "<leader>du",
+        rhs = function() require("dapui").toggle() end,
+        options = {silent = true},
+        description = "Toggle debug ui"
+    }, {
+        mode = {"n"},
+        lhs = "<leader>de",
+        rhs = function()
+            require("dapui").eval(vim.fn.input("Enter debug expression : "))
+        end,
+        options = {silent = true},
+        description = "Execute debug expressions"
+    }, --
+    -------------------------
+    -- 终端功能
+    -------------------------
+    -- {
+    --     mode = {"n", "v"},
+    --     lhs = {"<space>tt", [[<C-\>]]},
+    --     -- rhs = ":1ToggleTerm<cr>",
+    --     description = "Open terminal"
+    -- },  
+    {
+        mode = {"n", "v"},
+        lhs = {"<space>tb"},
+        rhs = ":terminal<cr>",
+        description = "Buffer terminal"
+    }, {
+        mode = {"n", "v"},
+        lhs = {"<space>tt", [[<C-\>]]},
+        -- rhs = function()
+        --     require("toggleterm").float_toggle()
+        -- end,
+        rhs = ":FloatermToggle<cr>",
+        description = "Toggle floating terminal"
+    }, {
+        mode = {"t"},
+        lhs = {[[<C-\>]]},
+        -- rhs = function()
+        --     require("toggleterm").float_toggle()
+        -- end,
+        rhs = [[<C-\><C-n>:FloatermToggle<cr>]],
+        description = "Toggle floating terminal"
+    }, {
+        mode = {"t"},
+        lhs = {[[<C-n>]]},
+        rhs = [[<C-\><C-n>:FloatermNew<cr>]],
+        options = {},
+        description = "New terminal"
+    }, {
+        mode = {"t"},
+        lhs = {[[<C-j>]]},
+        rhs = [[<C-\><C-n>:FloatermNext<cr>]],
+        description = "Next terminal"
+    }, {
+        mode = {"t"},
+        lhs = {[[<C-k>]]},
+        rhs = [[<C-\><C-n>:FloatermPrev<cr>]],
+        description = "Prev terminal"
+    }, {
+        mode = {"t"},
+        lhs = {[[<C-q>]]},
+        rhs = [[<C-\><C-n>:FloatermKill<cr>]],
+        description = "Kill terminal"
+    }, {
+        mode = {"t"},
+        lhs = {[[<C-q>]]},
+        rhs = [[<C-\><C-n>:FloatermKill<cr>]],
+        description = "Kill terminal"
+    }
+    -- {
+    --     mode = {"n", "v"},
+    --     lhs = "<space>tv",
+    --     rhs = function()
+    --         require("toggleterm").vertical_toggle()
+    --     end,
+    --     description = "Toggle vertical terminal"
+    -- },
+    -- {
+    --     mode = {"n", "v"},
+    --     lhs = "<space>tg",
+    --     rhs = function()
+    --         require("toggleterm").lazygit_toggle()
+    --     end,
+    --     description = "Toggle lazygit terminal"
+    -- }, {
+    --     mode = {"n", "v"},
+    --     lhs = "<space>ta",
+    --     rhs = ":ToggleTermToggleAll<cr>",
+    --     description = "Toggle all terminal"
+    -- }, {
+    --     mode = {"n", "v"},
+    --     lhs = "<space>t1",
+    --     rhs = ":1ToggleTerm<cr>",
+    --     options = {},
+    --     description = "Toggle terminal #1"
+    -- }, {
+    --     mode = {"n", "v"},
+    --     lhs = "<space>t2",
+    --     rhs = ":2ToggleTerm<cr>",
+    --     options = {},
+    --     description = "Toggle terminal #2"
+    -- }, {
+    --     mode = {"n", "v"},
+    --     lhs = "<space>t3",
+    --     rhs = ":3ToggleTerm<cr>",
+    --     options = {},
+    --     description = "Toggle terminal #3"
+    -- }, {
+    --     mode = {"n", "v"},
+    --     lhs = "<space>t4",
+    --     rhs = ":4ToggleTerm<cr>",
+    --     options = {},
+    --     description = "Toggle terminal #4"
+    -- }
 }
 
 mapping.register(mapping.global)
@@ -125,17 +714,17 @@ mapping.register(mapping.global)
 mapping.plugins = {
     ["kyazdani42/nvim-tree.lua"] = {
         global = {
-            {
-                mode = {"n"},
-                lhs = {"<space>e", "<M-b>"},
-                -- rhs = "<cmd>NvimTreeToggle<cr>",
-                rhs = function()
-                    aux.toggle_sidebar("NvimTree")
-                    vim.cmd("NvimTreeToggle")
-                end,
+            -- {
+            --     mode = {"n"},
+            --     lhs = {"<space>e", "<M-b>"},
+            --     -- rhs = "<cmd>NvimTreeToggle<cr>",
+            --     rhs = function()
+            --         aux.toggle_sidebar("NvimTree")
+            --         vim.cmd("NvimTreeToggle")
+            --     end,
 
-                description = "Open File Explorer"
-            }
+            --     description = "Open File Explorer"
+            -- }
             -- {
             --     mode = { "n" },
             --     lhs = "<M-e>",
@@ -176,209 +765,227 @@ mapping.plugins = {
     },
     ["akinsho/bufferline.nvim"] = {
         global = {
-            {
-                mode = {"n"},
-                lhs = "<M-h>",
-                rhs = "<cmd>BufferLineCyclePrev<cr>",
-                description = "Go to left buffer"
-            }, {
-                mode = {"n"},
-                lhs = "<M-l>",
-                rhs = "<cmd>BufferLineCycleNext<cr>",
-                description = "Go to right buffer"
-            }, {
-                mode = {"n"},
-                lhs = "<M-e>",
-                rhs = "<cmd>BufferLineMovePrev<cr>",
-                description = "Move current buffer to left"
-            }, {
-                mode = {"n"},
-                lhs = "<c-y>",
-                rhs = "<cmd>BufferLineMoveNext<cr>",
-                description = "Move current buffer to right"
-            }, {
-                mode = {"n"},
-                lhs = "<space>bn",
-                rhs = "<cmd>enew<cr>",
-                description = "Create new buffer"
-            }, {
-                mode = {"n"},
-                lhs = {"<M-q>", "<space>bc", "<space>bx"},
-                rhs = "<cmd>BufferDelete<cr>",
-                description = "Close current buffer"
-            }, {
-                mode = {"n"},
-                lhs = "<space>bl",
-                rhs = "<cmd>BufferLineCloseLeft<cr>",
-                description = "Close all left buffers"
-            }, {
-                mode = {"n"},
-                lhs = "<space>br",
-                rhs = "<cmd>BufferLineCloseRight<cr>",
-                description = "Close all right buffers"
-            }, {
-                mode = {"n"},
-                lhs = {"<space>bo", "<space>bX", "<M-Q>"},
-                rhs = function()
-                    vim.cmd("BufferLineCloseLeft")
-                    vim.cmd("BufferLineCloseRight")
-                end,
-                description = "Close all other buffers"
-            }, {
-                mode = {"n"},
-                lhs = "<space>ba",
-                rhs = function()
-                    vim.cmd("BufferLineCloseLeft")
-                    vim.cmd("BufferLineCloseRight")
-                    vim.cmd("BufferDelete")
-                end,
-                description = "Close all buffers"
-            }, {
-                mode = {"n"},
-                lhs = "<space>bs",
-                rhs = "<cmd>BufferLineSortByExtension<cr>",
-                description = "Buffers sort (by extension)"
-            }, {
-                mode = {"n"},
-                lhs = "<space>b1",
-                rhs = "<cmd>BufferLineGoToBuffer 1<cr>",
-                description = "Go to buffer 1"
-            }, {
-                mode = {"n"},
-                lhs = "<space>b2",
-                rhs = "<cmd>BufferLineGoToBuffer 2<cr>",
-                description = "Go to buffer 2"
-            }, {
-                mode = {"n"},
-                lhs = "<space>b3",
-                rhs = "<cmd>BufferLineGoToBuffer 3<cr>",
-                description = "Go to buffer 3"
-            }, {
-                mode = {"n"},
-                lhs = "<space>b4",
-                rhs = "<cmd>BufferLineGoToBuffer 4<cr>",
-                description = "Go to buffer 4"
-            }, {
-                mode = {"n"},
-                lhs = "<space>b5",
-                rhs = "<cmd>BufferLineGoToBuffer 5<cr>",
-                description = "Go to buffer 5"
-            }, {
-                mode = {"n"},
-                lhs = "<space>b6",
-                rhs = "<cmd>BufferLineGoToBuffer 6<cr>",
-                description = "Go to buffer 6"
-            }, {
-                mode = {"n"},
-                lhs = "<space>b7",
-                rhs = "<cmd>BufferLineGoToBuffer 7<cr>",
-                description = "Go to buffer 7"
-            }, {
-                mode = {"n"},
-                lhs = "<space>b8",
-                rhs = "<cmd>BufferLineGoToBuffer 8<cr>",
-                description = "Go to buffer 8"
-            }, {
-                mode = {"n"},
-                lhs = "<space>b9",
-                rhs = "<cmd>BufferLineGoToBuffer 9<cr>",
-                description = "Go to buffer 9"
-            }
+            -- {
+            --     mode = {"n"},
+            --     lhs = "<M-h>",
+            --     rhs = "<cmd>BufferLineCyclePrev<cr>",
+            --     description = "Go to left buffer"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<M-l>",
+            --     rhs = "<cmd>BufferLineCycleNext<cr>",
+            --     description = "Go to right buffer"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<M-e>",
+            --     rhs = "<cmd>BufferLineMovePrev<cr>",
+            --     description = "Move current buffer to left"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<c-y>",
+            --     rhs = "<cmd>BufferLineMoveNext<cr>",
+            --     description = "Move current buffer to right"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>bn",
+            --     rhs = "<cmd>enew<cr>",
+            --     description = "Create new buffer"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = {"<M-q>", "<space>bc", "<space>bx"},
+            --     rhs = "<cmd>BufferDelete<cr>",
+            --     description = "Close current buffer"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>bl",
+            --     rhs = "<cmd>BufferLineCloseLeft<cr>",
+            --     description = "Close all left buffers"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>br",
+            --     rhs = "<cmd>BufferLineCloseRight<cr>",
+            --     description = "Close all right buffers"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = {"<space>bo", "<space>bX", "<M-Q>"},
+            --     rhs = function()
+            --         vim.cmd("BufferLineCloseLeft")
+            --         vim.cmd("BufferLineCloseRight")
+            --     end,
+            --     description = "Close all other buffers"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>ba",
+            --     rhs = function()
+            --         vim.cmd("BufferLineCloseLeft")
+            --         vim.cmd("BufferLineCloseRight")
+            --         vim.cmd("BufferDelete")
+            --     end,
+            --     description = "Close all buffers"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>bs",
+            --     rhs = "<cmd>BufferLineSortByExtension<cr>",
+            --     description = "Buffers sort (by extension)"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>b1",
+            --     rhs = "<cmd>BufferLineGoToBuffer 1<cr>",
+            --     description = "Go to buffer 1"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>b2",
+            --     rhs = "<cmd>BufferLineGoToBuffer 2<cr>",
+            --     description = "Go to buffer 2"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>b3",
+            --     rhs = "<cmd>BufferLineGoToBuffer 3<cr>",
+            --     description = "Go to buffer 3"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>b4",
+            --     rhs = "<cmd>BufferLineGoToBuffer 4<cr>",
+            --     description = "Go to buffer 4"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>b5",
+            --     rhs = "<cmd>BufferLineGoToBuffer 5<cr>",
+            --     description = "Go to buffer 5"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>b6",
+            --     rhs = "<cmd>BufferLineGoToBuffer 6<cr>",
+            --     description = "Go to buffer 6"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>b7",
+            --     rhs = "<cmd>BufferLineGoToBuffer 7<cr>",
+            --     description = "Go to buffer 7"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>b8",
+            --     rhs = "<cmd>BufferLineGoToBuffer 8<cr>",
+            --     description = "Go to buffer 8"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>b9",
+            --     rhs = "<cmd>BufferLineGoToBuffer 9<cr>",
+            --     description = "Go to buffer 9"
+            -- }
         }
     },
     ["nvim-telescope/telescope.nvim"] = {
         global = {
-            { -- 项目导航
-                mode = {"n"},
-                lhs = {"<space>fp"},
-                rhs = ":Telescope projects<cr>",
-                description = "Find projects in history"
-            }, { -- 文件导航
-                mode = {"n"},
-                lhs = {"<space>ff", "<M-p>", "<C-p>"},
-                rhs = ":Telescope find_files<cr>",
-                description = "Find files in workspace"
-            }, {
-                mode = {"n"},
-                lhs = "<space>fo",
-                rhs = ":Telescope oldfiles<cr>",
-                description = "Find file in history"
-            }, {
-                mode = {"n"},
-                lhs = {"<space>fb", "<C-t>"},
-                rhs = ":Telescope buffers<cr>",
-                description = "Find file in buffers"
-            }, {
-                -- 内容查找 (项目范围)
-                mode = {"n"},
-                lhs = {"<space>fg", "<M-f>"},
-                rhs = ":Telescope live_grep<cr>",
-                description = "Find string in workspace"
-            }, {
-                -- 内容查找
-                mode = {"n"},
-                lhs = {"<leader>fg", "<C-f>"},
-                rhs = ":Telescope current_buffer_fuzzy_find<cr>",
-                description = "Find string in buffer"
-            }, {
-                -- 查找标记
-                mode = {"n"},
-                lhs = "<space>fm",
-                rhs = ":Telescope marks<cr>",
-                description = "Find marks in workspace"
-            }, {
-                -- 查找诊断
-                mode = {"n"},
-                lhs = {"<space>fd", "<leader>fd"},
-                rhs = ":Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
-                description = "Find diagnostics in buffer"
-            }, {
-                -- 历史搜索记录
-                mode = {"n"},
-                lhs = "<space>f/",
-                rhs = ":Telescope search_history<cr>",
-                description = "Find search history"
-            }, {
-                -- 历史命令记录
-                mode = {"n"},
-                lhs = "<space>f:",
-                rhs = ":Telescope command_history<cr>",
-                description = "Find command history"
-            }, {
-                -- 历史消息记录
-                mode = {"n"},
-                lhs = "<space>fn",
-                rhs = function()
-                    require("telescope").extensions.notify.notify()
-                end,
-                description = "Find notices history"
-            }, -- {
+            -- { -- 项目导航
+            --     mode = {"n"},
+            --     lhs = {"<space>fp"},
+            --     rhs = ":Telescope projects<cr>",
+            --     description = "Find projects in history"
+            -- }, { -- 文件导航
+            --     mode = {"n"},
+            --     lhs = {"<space>ff", "<M-p>", "<C-p>"},
+            --     rhs = ":Telescope find_files<cr>",
+            --     description = "Find files in workspace"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = "<space>fo",
+            --     rhs = ":Telescope oldfiles<cr>",
+            --     description = "Find file in history"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = {"<space>fb", "<C-t>"},
+            --     rhs = ":Telescope buffers<cr>",
+            --     description = "Find file in buffers"
+            -- }, {
+            --     -- 内容查找 (项目范围)
+            --     mode = {"n"},
+            --     lhs = {"<space>fg", "<M-f>"},
+            --     rhs = ":Telescope live_grep<cr>",
+            --     description = "Find string in workspace"
+            -- }, {
+            --     -- 内容查找
+            --     mode = {"n"},
+            --     lhs = {"<leader>fg", "<C-f>"},
+            --     rhs = ":Telescope current_buffer_fuzzy_find<cr>",
+            --     description = "Find string in buffer"
+            -- }, {
+            --     -- 查找标记
+            --     mode = {"n"},
+            --     lhs = "<space>fm",
+            --     rhs = ":Telescope marks<cr>",
+            --     description = "Find marks in workspace"
+            -- }, {
+            --     -- 查找诊断
+            --     mode = {"n"},
+            --     lhs = {"<space>fd", "<leader>fd"},
+            --     rhs = ":Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
+            --     description = "Find diagnostics in buffer"
+            -- }, {
+            --     -- 历史搜索记录
+            --     mode = {"n"},
+            --     lhs = "<space>f/",
+            --     rhs = ":Telescope search_history<cr>",
+            --     description = "Find search history"
+            -- }, {
+            --     -- 历史命令记录
+            --     mode = {"n"},
+            --     lhs = "<space>f:",
+            --     rhs = ":Telescope command_history<cr>",
+            --     description = "Find command history"
+            -- }, {
+            --     -- 历史消息记录
+            --     mode = {"n"},
+            --     lhs = "<space>fn",
+            --     -- <CMD>lua require('telescope').extensions.notify.notify()<CR>", "Notifications"
+            --     rhs = function()
+            --         require("telescope").extensions.notify.notify()
+            --     end,
+            --     description = "Find notices history"
+            -- }, -- {
+            -- --     mode = {"n"},
+            -- --     lhs = "<space>fh",
+            -- --     rhs = function()
+            -- --         require("telescope.builtin").resume()
+            -- --     end,
+            -- --     description = "Find last lookup"
+            -- -- },
+            -- {
+            --     -- 寄存器
+            --     mode = {"n"},
+            --     lhs = "<leader>fr",
+            --     rhs = ":Telescope registers<cr>",
+            --     description = "Find register"
+            -- }, {
+            --     -- 查找符号
+            --     mode = {"n"},
+            --     lhs = "<leader>fs",
+            --     rhs = ":Telescope lsp_document_symbols<cr>",
+            --     description = "Find document symbols"
+            -- }, {
+            --     mode = {"n"},
+            --     lhs = {"<space>fk", "<leader>fS"},
+            --     rhs = ":Telescope lsp_workspace_symbols<cr>",
+            --     description = "Find workspace symbols"
+            -- }, {
+            --     -- 查找快捷键
+            --     mode = {"n"},
+            --     lhs = "<space>fk",
+            --     rhs = ":Telescope keymaps<cr>",
+            --     description = "Find Keymaps"
+            -- }, {
+            --     -- 查找帮助文档
             --     mode = {"n"},
             --     lhs = "<space>fh",
-            --     rhs = function()
-            --         require("telescope.builtin").resume()
-            --     end,
-            --     description = "Find last lookup"
-            -- },
-            {
-                -- 查找快捷键
-                mode = {"n"},
-                lhs = "<space>fk",
-                rhs = ":Telescope keymaps<cr>",
-                description = "Find Keymaps"
-            }, {
-                -- 查找帮助文档
-                mode = {"n"},
-                lhs = "<space>fh",
-                rhs = ":Telescope help_tags<cr>",
-                description = "Find help"
-            }, {
-                -- 查找并预览主题
-                mode = {"n"},
-                lhs = "<space>fc",
-                rhs = ":lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<CR>",
-                description = "Preview Colorscheme"
-            }
+            --     rhs = ":Telescope help_tags<cr>",
+            --     description = "Find help"
+            -- }, {
+            --     -- 查找并预览主题
+            --     mode = {"n"},
+            --     lhs = "<space>fc",
+            --     rhs = ":lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<CR>",
+            --     description = "Preview Colorscheme"
+            -- }
         },
         custom = function()
             local _, actions = pcall(require, "telescope.actions")
@@ -465,11 +1072,6 @@ mapping.plugins = {
         buffer = {
             {
                 mode = {"n"},
-                lhs = {"<space>o", "<leader>o", "<leader>2"},
-                rhs = "<cmd>AerialToggle! right<cr>",
-                description = "Open Outilne Explorer"
-            }, {
-                mode = {"n"},
                 lhs = "{",
                 rhs = "<cmd>AerialPrev<cr>",
                 description = "Move item up"
@@ -491,85 +1093,20 @@ mapping.plugins = {
             }
         }
     },
-    ["akinsho/toggleterm.nvim"] = {
-        global = {
-            {
-                mode = {"n", "v"},
-                lhs = {"<space>tt", [[<C-\>]]},
-                rhs = ":1ToggleTerm<cr>",
-                -- rhs = '<cmd>exe v:count1 . "ToggleTerm"<cr>',
-                description = "Toggle terminal"
-            }, {
-                mode = {"n", "v"},
-                lhs = {"<space>tb"},
-                rhs = ":terminal<cr>",
-                description = "Buffer terminal"
-            }, {
-                mode = {"n", "v"},
-                lhs = "<space>tf",
-                rhs = function()
-                    require("toggleterm").float_toggle()
-                end,
-                description = "Toggle floating terminal"
-            }, {
-                mode = {"n", "v"},
-                lhs = "<space>tv",
-                rhs = function()
-                    require("toggleterm").vertical_toggle()
-                end,
-                description = "Toggle vertical terminal"
-            }, {
-                mode = {"n", "v"},
-                lhs = "<space>tg",
-                rhs = function()
-                    require("toggleterm").lazygit_toggle()
-                end,
-                description = "Toggle lazygit terminal"
-            }, {
-                mode = {"n", "v"},
-                lhs = "<space>ta",
-                rhs = ":ToggleTermToggleAll<cr>",
-                description = "Toggle all terminal"
-            }, {
-                mode = {"n", "v"},
-                lhs = "<space>t1",
-                rhs = ":1ToggleTerm<cr>",
-                options = {},
-                description = "Toggle terminal #1"
-            }, {
-                mode = {"n", "v"},
-                lhs = "<space>t2",
-                rhs = ":2ToggleTerm<cr>",
-                options = {},
-                description = "Toggle terminal #2"
-            }, {
-                mode = {"n", "v"},
-                lhs = "<space>t3",
-                rhs = ":3ToggleTerm<cr>",
-                options = {},
-                description = "Toggle terminal #3"
-            }, {
-                mode = {"n", "v"},
-                lhs = "<space>t4",
-                rhs = ":4ToggleTerm<cr>",
-                options = {},
-                description = "Toggle terminal #4"
-            }
-        }
-    },
+    ["akinsho/toggleterm.nvim"] = {global = {}},
     ["kristijanhusak/vim-dadbod-ui"] = {
         global = {
-            {
-                mode = {"n"},
-                lhs = "<leader>4",
-                -- rhs = ":NvDBUIToggle<cr>",
-                rhs = function()
-                    aux.toggle_sidebar("dbui")
-                    vim.cmd("DBUIToggle")
-                end,
-                options = {silent = true},
-                description = "Open Database Explorer"
-            }
+            -- {
+            --     mode = {"n"},
+            --     lhs = "<leader>4",
+            --     -- rhs = ":NvDBUIToggle<cr>",
+            --     rhs = function()
+            --         aux.toggle_sidebar("dbui")
+            --         vim.cmd("DBUIToggle")
+            --     end,
+            --     options = {silent = true},
+            --     description = "Open Database Explorer"
+            -- }
         }
     },
     ["hrsh7th/vim-vsnip"] = {
@@ -862,7 +1399,9 @@ mapping.plugins = {
             local cmp = require("cmp")
             local has_words_before = function()
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+                return col ~= 0 and
+                           vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(
+                               col, col):match "%s" == nil
             end
 
             return {
@@ -931,198 +1470,79 @@ mapping.plugins = {
     },
     ["mbbill/undotree"] = {
         global = {
-            {
-                -- 文件历史版本树
-                mode = {"n"},
-                lhs = {"<C-y>", "<space>3"},
-                -- rhs = ":UndotreeToggle<cr>",
-                rhs = function()
-                    aux.toggle_sidebar("undotree")
-                    vim.cmd("UndotreeToggle")
-                end,
-                options = {silent = true},
-                description = "Open Undo Explorer"
-            }
+            -- {
+            --     -- 文件历史版本树
+            --     mode = {"n"},
+            --     lhs = {"<C-y>", "<space>3"},
+            --     -- rhs = ":UndotreeToggle<cr>",
+            --     rhs = function()
+            --         aux.toggle_sidebar("undotree")
+            --         vim.cmd("UndotreeToggle")
+            --     end,
+            --     options = {silent = true},
+            --     description = "Open Undo Explorer"
+            -- }
         }
     },
-    ["mfussenegger/nvim-dap"] = {
-        global = {
-            {
-                mode = {"n"},
-                lhs = "<leader>db",
-                rhs = function()
-                    require("dap").toggle_breakpoint()
-                end,
-                options = {silent = true},
-                description = "Mark or delete breakpoints"
-            }, {
-                mode = {"n"},
-                lhs = "<leader>dc",
-                rhs = function()
-                    require("dap").clear_breakpoints()
-                end,
-                options = {silent = true},
-                description = "Clear breakpoints in the current buffer"
-            }, {
-                mode = {"n"},
-                lhs = "<F5>",
-                rhs = function() require("dap").continue() end,
-                options = {silent = true},
-                description = "Enable debugging or jump to the next breakpoint"
-            }, {
-                mode = {"n"},
-                lhs = "<F6>",
-                rhs = function() require("dap").step_into() end,
-                options = {silent = true},
-                description = "Step into"
-            }, {
-                mode = {"n"},
-                lhs = "<F7>",
-                rhs = function()
-                    ---@diagnostic disable-next-line: missing-parameter
-                    require("dap").step_over()
-                end,
-                options = {silent = true},
-                description = "Step over"
-            }, {
-                mode = {"n"},
-                lhs = "<F8>",
-                rhs = function() require("dap").step_out() end,
-                options = {silent = true},
-                description = "Step out"
-            }, {
-                mode = {"n"},
-                lhs = "<F9>",
-                rhs = function() require("dap").run_last() end,
-                options = {silent = true},
-                description = "Rerun debug"
-            }, {
-                mode = {"n"},
-                lhs = "<F10>",
-                rhs = function() require("dap").terminate() end,
-                options = {silent = true},
-                description = "Close debug"
-            }
-        }
-    },
-    ["rcarriga/nvim-dap-ui"] = {
-        global = {
-            {
-                mode = {"n"},
-                lhs = "<leader>du",
-                rhs = function()
-                    ---@diagnostic disable-next-line: missing-parameter
-                    require("dapui").toggle()
-                end,
-                options = {silent = true},
-                description = "Toggle debug ui"
-            }, {
-                mode = {"n"},
-                lhs = "<leader>de",
-                rhs = function()
-                    ---@diagnostic disable-next-line: missing-parameter
-                    require("dapui").eval(vim.fn.input(
-                                              "Enter debug expression : "))
-                end,
-                options = {silent = true},
-                description = "Execute debug expressions"
-            }
-        }
-    },
-    ["kevinhwang91/nvim-hlslens"] = {
-        global = {
-            {
-                mode = {"n"},
-                lhs = "n",
-                rhs = function()
-                    pcall(vim.cmd, "normal! " .. vim.v.count1 .. "n")
-                    require("hlslens").start()
-                end,
-                description = "Skip to next search result"
-            }, {
-                mode = {"n"},
-                lhs = "N",
-                rhs = function()
-                    pcall(vim.cmd, "normal! " .. vim.v.count1 .. "N")
-                    require("hlslens").start()
-                end,
-                description = "Jump to previous search result"
-            }, {
-                mode = {"n"},
-                lhs = "*",
-                rhs = function()
-                    pcall(vim.cmd, "normal! " .. vim.v.count1 .. "*")
-                    require("hlslens").start()
-                end,
-                description = "Jump to the next word at the current cursor"
-            }, {
-                mode = {"n"},
-                lhs = "#",
-                rhs = function()
-                    pcall(vim.cmd, "normal! " .. vim.v.count1 .. "#")
-                    require("hlslens").start()
-                end,
-                description = "Jump to the prev word at the current cursor"
-            }, {
-                mode = {"n"},
-                lhs = "g*",
-                rhs = function()
-                    pcall(vim.cmd, "normal! " .. vim.v.count1 .. "g*")
-                    require("hlslens").start()
-                end,
-                description = "Jump to the next word at the current cursor (forbidden range)"
-            }, {
-                mode = {"n"},
-                lhs = "g#",
-                rhs = function()
-                    pcall(vim.cmd, "normal! " .. vim.v.count1 .. "g#")
-                    require("hlslens").start()
-                end,
-                description = "Jump to the prev word at the current cursor (forbidden range)"
-            }
-        }
-    },
+    ["mfussenegger/nvim-dap"] = {global = {}},
+    ["rcarriga/nvim-dap-ui"] = {global = {}},
+    ["kevinhwang91/nvim-hlslens"] = {global = {}},
     ["nvim-pack/nvim-spectre"] = {
-        global = {
-            {
-                mode = {"n"},
-                lhs = "<leader>rp",
-                rhs = function()
-                    aux.toggle_sidebar("spectre_panel")
-                    require("spectre").open()
-                end,
-                description = "Replace characters in all files in the current workspace"
-            }, {
-                mode = {"n"},
-                lhs = "<leader>rf",
-                rhs = function()
-                    aux.toggle_sidebar("spectre_panel")
-                    -- FIX: Invalid selected word ..
-                    -- vim.cmd("normal! viw")
-                    require("spectre").open_file_search()
-                end,
-                description = "Replace all characters in the current file"
-            }, {
-                mode = {"n"},
-                lhs = "<leader>rw",
-                rhs = function()
-                    aux.toggle_sidebar("spectre_panel")
-                    require("spectre").open_visual({select_word = true})
-                end,
-                description = "Replace the character under the cursor in all files under the current workspace"
+        global = {},
+        buffer = {
+            ['toggle_line'] = {
+                map = "dd",
+                cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
+                desc = "toggle current item"
+            },
+            ['enter_file'] = {
+                map = "<cr>",
+                cmd = "<cmd>lua require('spectre.actions').select_entry()<CR>",
+                desc = "goto current file"
+            },
+            ['send_to_qf'] = {
+                map = "<leader>q",
+                cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
+                desc = "send all item to quickfix"
+            },
+            ['replace_cmd'] = {
+                map = "<leader>c",
+                cmd = "<cmd>lua require('spectre.actions').replace_cmd()<CR>",
+                desc = "input replace vim command"
+            },
+            ['show_option_menu'] = {
+                map = "<leader>o",
+                cmd = "<cmd>lua require('spectre').show_options()<CR>",
+                desc = "show option"
+            },
+            ['run_replace'] = {
+                map = "<leader>R",
+                cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
+                desc = "replace all"
+            },
+            ['change_view_mode'] = {
+                map = "<leader>v",
+                cmd = "<cmd>lua require('spectre').change_view()<CR>",
+                desc = "change result view mode"
+            },
+            ['toggle_live_update'] = {
+                map = "tu",
+                cmd = "<cmd>lua require('spectre').toggle_live_update()<CR>",
+                desc = "update change when vim write file."
+            },
+            ['toggle_ignore_case'] = {
+                map = "ti",
+                cmd = "<cmd>lua require('spectre').change_options('ignore-case')<CR>",
+                desc = "toggle ignore case"
+            },
+            ['toggle_ignore_hidden'] = {
+                map = "th",
+                cmd = "<cmd>lua require('spectre').change_options('hidden')<CR>",
+                desc = "toggle search hidden"
             }
         }
     },
     ["phaazon/hop.nvim"] = {
-        -- vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-        -- vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-        -- vim.api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
-        -- vim.api.nvim_set_keymap('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
-        -- vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-        -- vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-        -- vim.api.nvim_set_keymap('n', '<leader>j', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END })<cr>", {})
-        -- vim.api.nvim_set_keymap('v', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END })<cr>", {})
-        -- vim.api.nvim_set_keymap('o', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END, inclusive_jump = true })<cr>", {})
         global = {
             {
                 mode = {"n"},
@@ -1190,14 +1610,7 @@ mapping.plugins = {
     },
     ["AckslD/nvim-neoclip.lua"] = {
         global = {
-            {
-                mode = {"n"},
-                lhs = "<space>fy",
-                rhs = function()
-                    require("telescope").extensions.neoclip.default()
-                end,
-                description = "Find Clipboard History"
-            }
+            
             --  {
             --     mode = {"n"},
             --     lhs = "<leader>cy",
@@ -1230,13 +1643,13 @@ mapping.plugins = {
         global = {
             {
                 mode = {"n"},
-                lhs = "<M-p>",
+                lhs = {"<M-p>", "<C-S-p>"},
                 rhs = ":call vm#commands#add_cursor_up(0, v:count1)<cr>",
                 options = {silent = true},
                 description = "Create cursor down"
             }, {
                 mode = {"n"},
-                lhs = "<M-n>",
+                lhs = {"<M-n>", "<C-S-n>"},
                 rhs = ":call vm#commands#add_cursor_down(0, v:count1)<cr>",
                 options = {silent = true},
                 description = "Create cursor up"

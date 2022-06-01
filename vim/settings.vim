@@ -115,8 +115,6 @@ set shortmess+=c
 set signcolumn=yes
 
 "" Neovide 支持
-set guifont=DroidSansMono\ Nerd\ Font:h19
-let g:neovide_cursor_vfx_mode="railgun"
-let g:neovide_transparency=0.95
-let g:neovide_remember_window_size=v:true
-let g:neovide_input_use_logo=v:true
+if has("gui_running")
+    set guifont=DroidSansMono\ Nerd\ Font:h19
+endif

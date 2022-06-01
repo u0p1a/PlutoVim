@@ -3,7 +3,15 @@
 " 原则：<leader> 前缀用于当前文件范围, <space>前缀用于视图范围
 """"""""""""""""""""
 
-""" 基础功能 """
+""""""""""""""""""""
+" 基础功能
+""""""""""""""""""""
+" 退出插入模式
+inoremap jj <Esc>
+
+""""""""""""""""""""
+" 文件功能
+""""""""""""""""""""
 " 新建文件
 nnoremap <C-n> :enew<cr>
  " 保存本文件
@@ -17,15 +25,13 @@ vnoremap <space>w <esc>:wa<cr>
 cmap w!! w !sudo tee % > /dev/null <cr>
 " 另存为新文件
 nnoremap '<C-S-s>' :saveas <C-r>=fnamemodify('.',':p')<cr>
-" 退出插入模式
-inoremap jj <Esc>
 " 退出本文件
 nnoremap <leader>q :q<cr>
 vnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
 vnoremap <leader>Q :q!<cr>
 " 退出全部文件
-nnoremap <space>q :qa!<cr>
+nnoremap <space>q :qa<cr>
 nnoremap <space>Q :wa<cr>:q<cr>
 
 
@@ -116,6 +122,9 @@ nnoremap Y y$
 xnoremap p pgvy
 nnoremap <C-c> yy
 vnoremap <C-c> "+y
+noremap <D-s>  :w<CR>
+noremap <D-c>  y
+noremap <D-v>  hp
 " 粘贴功能
 nnoremap <C-v> p
 cnoremap <C-v> <C-R>+
@@ -157,10 +166,10 @@ nnoremap <silent> <esc> :nohlsearch<cr>
 
 "" 缩进功能
 " Tab 缩进 
-nnoremap <tab> V>
-nnoremap <s-tab> V<
-vnoremap <tab> >gv
-vnoremap <s-tab> <gv
+" nnoremap <tab> V>
+" nnoremap <s-tab> V<
+" vnoremap <tab> >gv
+" vnoremap <s-tab> <gv
 " > < 缩进
 nnoremap < <gv
 nnoremap > >gv
